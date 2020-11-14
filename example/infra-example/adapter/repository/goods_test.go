@@ -6,14 +6,12 @@ import (
 	"time"
 
 	"github.com/8treenet/freedom"
-	"github.com/8treenet/freedom/example/infra-example/server/conf"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 func TestGoodsRepository_Get(t *testing.T) {
 	os.Setenv(freedom.ProfileENV, os.Getenv("GOPATH")+"/src/github.com/8treenet/freedom/example/infra-example/server/conf")
-	conf.Reset()
 
 	//创建单元测试工具
 	unitTest := freedom.NewUnitTest()

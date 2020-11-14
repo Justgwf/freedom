@@ -4,33 +4,28 @@ package conf
 import (
 	"os"
 	"runtime"
+	"sync"
 
 	"github.com/8treenet/freedom"
 )
 
 func init() {
 	entryPoint()
-	cfg = &Configuration{
-		DB:    newDBConf(),
-		App:   newAppConf(),
-		Redis: newRedisConf(),
-	}
-}
-
-// Reset 重新解析
-func Reset() {
-	cfg = &Configuration{
-		DB:    newDBConf(),
-		App:   newAppConf(),
-		Redis: newRedisConf(),
-	}
 }
 
 // Get .
 func Get() *Configuration {
+	once.Do(func() {
+		cfg = &Configuration{
+			DB:    newDBConf(),
+			App:   newAppConf(),
+			Redis: newRedisConf(),
+		}
+	})
 	return cfg
 }
 
+var once sync.Once
 var cfg *Configuration
 
 // Configuration .
