@@ -17,6 +17,15 @@ func init() {
 	}
 }
 
+// Reset 重新解析
+func Reset() {
+	cfg = &Configuration{
+		DB:    newDBConf(),
+		App:   newAppConf(),
+		Redis: newRedisConf(),
+	}
+}
+
 // Get .
 func Get() *Configuration {
 	return cfg
